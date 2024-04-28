@@ -60,6 +60,7 @@ public class DefaultYamlConfigParse extends AbstractConfigParse {
     
     protected static Yaml createYaml() {
         LoaderOptions loaderOptions = new LoaderOptions();
+        loaderOptions.setAllowDuplicateKeys(false);
         SafeConstructor constructor;
         if (getYamlAllowComplexObject()) {
             constructor = new Constructor(loaderOptions);
@@ -69,7 +70,6 @@ public class DefaultYamlConfigParse extends AbstractConfigParse {
         DumperOptions dumperOptions = new DumperOptions();
         Representer representer = new Representer(dumperOptions);
         LimitedResolver resolver = new LimitedResolver();
-        loaderOptions.setAllowDuplicateKeys(false);
         return new Yaml(constructor, representer, dumperOptions, loaderOptions, resolver);
     }
     
